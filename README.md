@@ -7,24 +7,24 @@ Functions are styled to match the simplicity and ease of use found in the `async
 
 ## Install
 
-  npm install re
+    npm install re
 
 
 ## Quick Example
 
-  var Re = require('re'),
-      re = new Re();
+    var Re = require('re'),
+        re = new Re();
 
-  re.try(repeatMe, doMeAtTheEnd);
+    re.try(repeatMe, doMeAtTheEnd);
 
-  var repeatMe = function(retryCount, fail, callback){
-    if(retryCount < 2) fail(new Error("Not there yet!"));
-    else callback(null, retryCount);
-  };
+    var repeatMe = function(retryCount, fail, callback){
+      if(retryCount < 2) fail(new Error("Not there yet!"));
+      else callback(null, retryCount);
+    };
 
-  var doMeAtTheEnd = function(err, retryCount){
-    console.log("It took this many tries: " + retryCount);
-  };
+    var doMeAtTheEnd = function(err, retryCount){
+      console.log("It took this many tries: " + retryCount);
+    };
 
 # In the Browser
 Tested in Chrome. Usage:
@@ -40,18 +40,17 @@ Tested in Chrome. Usage:
 
 If you like the defaults, call it like this:
 
-<pre>
-var Re = require('re'),
-    re = new Re();
+    var Re = require('re'),
+        re = new Re();
 
-re.try(function(retryCount, fail, callback){
-    if(retryCount < 2) fail(new Error("Not there yet!"));
-    else callback(null, retryCount);
-  },
-  function(err, retryCount){
-    console.log("It took this many tries: " + retryCount);
-});
-</pre>
+    re.try(function(retryCount, fail, callback){
+        if(retryCount < 2) fail(new Error("Not there yet!"));
+        else callback(null, retryCount);
+      },
+      function(err, retryCount){
+        console.log("It took this many tries: " + retryCount);
+    });
+
 
 The `re.try` function takes two arguments, a function to call until it works
 (or we run out of retries) and a function to call when it finally succeeds (or
