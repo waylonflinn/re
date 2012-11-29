@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Re Test</title>
+		<script src="../lib/re.js"></script>
+		<script>
+			function test(){
+				var strategy = {
+				      "type": Re.STRATEGIES.EXPONENTIAL,
+				      "initial":50,
+				      "base":2
+				    },
+					options = {"retries": 9, "strategy": strategy},
+					re = new Re(options),
+					last = new Date().getTime(),
+					first = last,
+					results = document.getElementById("results"),
+					fin = document.getElementById("final"),
+					total = document.getElementById("total");
+
+					re.try(function(retryCount, fail, callback){
+							var now = new Date().getTime(),
+								text = "RETRY: " + retryCount + " of " + options.retries + ", ELAPSED: " + (now - last),
+								result = document.createElement("li");
+
+							result.appendChild(document.createTextNode(text));
+
+							results.appendChild(result);
+							last = now;
+							if(retryCount < 8) throw new Error("Not there yet.");
+							else callback(null, retryCount);
+						},
+						function(err, retries){
+							if(err) fin.appendChild(document.createTextNode(err));
+							else fin.appendChild(document.createTextNode("It took this many tries: " + retries));
+
+							total.appendChild(document.createTextNode("TOTAL ELAPSED TIME: " + (last - first)));
+					});
+				}
+		</script>
+	</head>
+	<body>
+		<h1 id="header">Test Results</h1>
+		<ol id="results">
+		</ol>
+		<div id="final"></div>
+		<div id="total"></div>
+		<script>test()</script>
+	</body>
+</html>

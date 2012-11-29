@@ -1,13 +1,15 @@
-var retry = require('../lib/re');
+#!/usr/bin/env node
+
+var Re = require('../lib/re');
 
 	// 800, 1600, 3200, 3200, 3200, ...
 var strategy = {
-      "type": retry.RETRY_STRATEGY.EXPONENTIAL,
-      "initial":100,
+      "type": Re.STRATEGIES.EXPONENTIAL,
+      "initial":50,
       "base":2
     },
-	options = {"timeout": 10000, "retries": 10, "retryStrategy": strategy},
-	re = new retry.Re(options),
+	options = {"retries": 9, "strategy": strategy},
+	re = new Re(options),
 	last = new Date().getTime(),
 	first = last;
 

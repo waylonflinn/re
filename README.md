@@ -7,17 +7,42 @@ Functions are styled to match the simplicity and ease of use found in the `async
 
 ## Install
 
-<pre>
   npm install re
-</pre>
+
+
+## Quick Example
+
+  var Re = require('re'),
+      re = new Re();
+
+  re.try(repeatMe, doMeAtTheEnd);
+
+  var repeatMe = function(retryCount, fail, callback){
+    if(retryCount < 2) fail(new Error("Not there yet!"));
+    else callback(null, retryCount);
+  };
+
+  var doMeAtTheEnd = function(err, retryCount){
+    console.log("It took this many tries: " + retryCount);
+  };
+
+# In the Browser
+Tested in Chrome. Usage:
+
+    <script type="text/javascript" src="re.js"></script>
+    <script type="text/javascript">
+      var re = new Re();
+
+      re.try(repeatMe, doMeAtTheEnd);
+    </script>
 
 ## Usage
 
 If you like the defaults, call it like this:
 
 <pre>
-var retry = require('re'),
-    re = new retry.Re();
+var Re = require('re'),
+    re = new Re();
 
 re.try(function(retryCount, fail, callback){
     if(retryCount < 2) fail(new Error("Not there yet!"));
@@ -60,8 +85,8 @@ The default options look like this:
 
     var options = {
         retries : 10,
-        retryStrategy : {
-          "type": retry.RETRY_STRATEGY.EXPONENTIAL,
+        strategy : {
+          "type": Re.STRATEGIES.EXPONENTIAL,
           "initial":100,
           "base":2
         }
@@ -69,8 +94,8 @@ The default options look like this:
 
 You pass this options object into the `Re` constructor.
 
-    var retry = require('re'),
-        re = new retry.Re(options);
+    var Re = require('re'),
+        re = new Re(options);
 
 This gives you 10 retries and an exponential backoff strategy with the following progression (in milliseconds): 100, 200,
 400, 800, 1600, 3200, 6400, 12800, 25600, 51200
@@ -79,11 +104,11 @@ This gives you 10 retries and an exponential backoff strategy with the following
 
 The following will retry every 400 milliseconds:
 
-    {"type": retry.RETRY_STRATEGY.CONSTANT, "initial": 400}
+    {"type": Re.STRATEGIES.CONSTANT, "initial": 400}
 
 The following will give a linear backoff strategy that has the following progression (when paired with `retries: 10`) : 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 1800
 
-    {"type": retry.RETRY_STRATEGY.LINEAR, "initial": 200, "max":1800}
+    {"type": Re.STRATEGIES.LINEAR, "initial": 200, "max":1800}
 
 Both progressive strategies accept the `max` option.  All strategies also accept a
 `rand` option. This is a `Boolean` that adds a random multiplier between 1 and 2.
