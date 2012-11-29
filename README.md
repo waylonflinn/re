@@ -3,7 +3,7 @@
 Do it again, if it doesn't work the first time. Supports various configurable
 retry strategies, including: constant, exponential backoff and linear backoff.
 
-Functions are styled to match the simplicity and ease of use found in the `async` library.
+Functions are styled to match the simplicity and ease of use found in the [async](https://github.com/caolan/async) library.
 
 ## Install
 
