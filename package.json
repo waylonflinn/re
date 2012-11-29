@@ -1,0 +1,11 @@
+{
+	"name": "re",
+	"description": "Do it again, after a bit.",
+	"version": "0.0.7-1",
+	"main": "./lib/re",
+	"keywords": ["utility", "retry", "exponential backoff", "linear backoff"],
+	"author": "Waylon Flinn <waylonflinn@gmail.com>",
+	"engines":{
+		"node": ">=0.6"
+		}
+}
