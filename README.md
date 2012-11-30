@@ -26,7 +26,7 @@ Functions are styled to match the simplicity and ease of use found in the [async
       console.log("It took this many tries: " + retryCount);
     };
 
-# In the Browser
+## In the Browser
 Tested in Chrome. Usage:
 
     <script type="text/javascript" src="re.js"></script>
@@ -35,6 +35,8 @@ Tested in Chrome. Usage:
 
       re.try(repeatMe, doMeAtTheEnd);
     </script>
+
+Try it in your browser with this test: [test/test.html](http://htmlpreview.github.com/?https://github.com/waylonflinn/re/blob/master/test/test.html)
 
 ## Usage
 

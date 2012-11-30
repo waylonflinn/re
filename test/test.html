@@ -5,42 +5,60 @@
 		<script src="../lib/re.js"></script>
 		<script>
 			function test(){
+				var RETRIES = 9,
+					FAKE_FINISH_RETRIES = 7;
+
 				var strategy = {
 				      "type": Re.STRATEGIES.EXPONENTIAL,
 				      "initial":50,
 				      "base":2
 				    },
-					options = {"retries": 9, "strategy": strategy},
+					options = {"retries": RETRIES, "strategy": strategy},
 					re = new Re(options),
 					last = new Date().getTime(),
 					first = last,
 					results = document.getElementById("results"),
 					fin = document.getElementById("final"),
-					total = document.getElementById("total");
+					total = document.getElementById("total"),
+					intro = document.getElementById("intro"),
+					expectedDuration = calcDuration(re, Math.min(RETRIES, FAKE_FINISH_RETRIES)),
+					introString = "Starting test (should take "+ Math.min(RETRIES, FAKE_FINISH_RETRIES)+" retries and about  " + expectedDuration/1000 + " seconds).";
 
-					re.try(function(retryCount, fail, callback){
-							var now = new Date().getTime(),
-								text = "RETRY: " + retryCount + " of " + options.retries + ", ELAPSED: " + (now - last),
-								result = document.createElement("li");
+				intro.appendChild(document.createTextNode(introString));
 
-							result.appendChild(document.createTextNode(text));
+				re.try(function(retryCount, fail, callback){
+						var now = new Date().getTime(),
+							text = "RETRY: " + retryCount + " of " + options.retries + ", ELAPSED: " + (now - last),
+							result = document.createElement("li");
 
-							results.appendChild(result);
-							last = now;
-							if(retryCount < 8) throw new Error("Not there yet.");
-							else callback(null, retryCount);
-						},
-						function(err, retries){
-							if(err) fin.appendChild(document.createTextNode(err));
-							else fin.appendChild(document.createTextNode("It took this many tries: " + retries));
+						result.appendChild(document.createTextNode(text));
 
-							total.appendChild(document.createTextNode("TOTAL ELAPSED TIME: " + (last - first)));
-					});
+						results.appendChild(result);
+						last = now;
+						if(retryCount < FAKE_FINISH_RETRIES) throw new Error("Not there yet.");
+						else callback(null, retryCount);
+					},
+					function(err, retries){
+						if(err) fin.appendChild(document.createTextNode(err));
+						else fin.appendChild(document.createTextNode("It took this many tries: " + retries));
+
+						total.appendChild(document.createTextNode("TOTAL ELAPSED TIME: " + (last - first)));
+				});
+			}
+
+			function calcDuration(re, retries){
+				var i = 0,
+					total = 0;
+				for(i = 0; i < retries; i++){
+					total += re.retryInterval(i);
 				}
+				return total;
+			}
 		</script>
 	</head>
 	<body>
-		<h1 id="header">Test Results</h1>
+		<h1 id="header">Re, Test It Again</h1>
+		<div id="intro"></div>
 		<ol id="results">
 		</ol>
 		<div id="final"></div>
