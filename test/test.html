@@ -5,10 +5,10 @@
 		<script src="../lib/re.js"></script>
 		<script>
 			function test(){
+				
 				var RETRIES = 9,
-					FAKE_FINISH_RETRIES = 7;
-
-				var strategy = {
+					FAKE_FINISH_RETRIES = 7,
+					strategy = {
 				      "type": Re.STRATEGIES.EXPONENTIAL,
 				      "initial":50,
 				      "base":2
@@ -21,9 +21,11 @@
 					fin = document.getElementById("final"),
 					total = document.getElementById("total"),
 					intro = document.getElementById("intro"),
+					broken = document.getElementById("broken"),
 					expectedDuration = calcDuration(re, Math.min(RETRIES, FAKE_FINISH_RETRIES)),
 					introString = "Starting test (should take "+ Math.min(RETRIES, FAKE_FINISH_RETRIES)+" retries and about  " + expectedDuration/1000 + " seconds).";
 
+				broken.style.display = "none";
 				intro.appendChild(document.createTextNode(introString));
 
 				re.try(function(retryCount, fail, callback){
@@ -58,6 +60,7 @@
 	</head>
 	<body>
 		<h1 id="header">Re, Test It Again</h1>
+		<div id="broken">If this is all you see, it's broken.</div>
 		<div id="intro"></div>
 		<ol id="results">
 		</ol>
