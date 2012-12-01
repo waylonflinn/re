@@ -27,7 +27,7 @@ Functions are styled to match the simplicity and ease of use found in the [async
     };
 
 ## In the Browser
-Tested in Chrome. Usage:
+Tested in Firefox and Chrome. Usage:
 
     <script type="text/javascript" src="re.js"></script>
     <script type="text/javascript">
