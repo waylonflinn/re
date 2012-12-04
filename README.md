@@ -17,8 +17,8 @@ Functions are styled to match the simplicity and ease of use found in the [async
 
     re.try(repeatMe, doMeAtTheEnd);
 
-    var repeatMe = function(retryCount, fail, callback){
-      if(retryCount < 2) fail(new Error("Not there yet!"));
+    var repeatMe = function(retryCount, done){
+      if(retryCount < 2) done(new Error("Not there yet!"));
       else callback(null, retryCount);
     };
 
@@ -45,12 +45,12 @@ If you like the defaults, call it like this:
     var Re = require('re'),
         re = new Re();
 
-    re.try(function(retryCount, fail, callback){
-        if(retryCount < 2) fail(new Error("Not there yet!"));
-        else callback(null, retryCount);
+    re.try(function(retryCount, done){
+        if(retryCount < 2) done(new Error("Not there yet!"));
+        else done(null, retryCount);
       },
       function(err, retryCount){
-        console.log("It took this many tries: " + retryCount);
+        console.log("It took this many retries: " + retryCount);
     });
 
 
@@ -60,22 +60,22 @@ we fail too many times).
 As the name suggests we automatically wrap your function in a standard `try`
 block and, if an exception occurs, call it again according to the retry schedule.
 
-This first function passed to `re.try` should take 3 arguments like this:
+This first function passed to `re.try` should take 2 arguments like this:
 
-    function operation(retryCount, fail, callback)
+    function operation(retryCount, done)
 
 The `retryCount` argument is the number of the current retry. It'll be zero the first time 
 and get bigger every time.
 
-The `fail` argument is a function to call if you
-encounter a fail condition in your operation. This let's us know we need to try again.
-If you don't call `fail` and no exception happens, you're done. You can pass an `err`
-argument to the `fail` function.
+The `done` argument is a function to call when you've completed your operation.
+If you encounter an error condition in your operation, pass in the Error object
+as the first argument. If you don't encounter an error, pass in a falsy first
+argument (null works). If you give us a falsy error and no exception happens,
+we call your callback with all the arguments passed into this function.
 
-The `callback` argument is the callback function you passed into `re.try`. It should be
-a function that takes an `err` parameter as it's first argument. The rest of the arguments
-are up to you. Call this when you succeed. We'll call it with the last exception or whatever
-you passed to the last `fail`, when too many failures happen.
+The second function passed to `re.try` can take as many arguments as you like but
+should always start with an error parameter. This will be called with a falsy first
+parameter, if no error happens.
 
 The `re.do` function is like `re.try` expect it doesn't wrap your operation in
 a `try...catch`.
