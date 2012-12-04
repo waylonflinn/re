@@ -3,7 +3,8 @@
 Do it again, if it doesn't work the first time. Supports various configurable
 retry strategies, including: constant, exponential backoff and linear backoff.
 
-Functions are styled to match the simplicity and ease of use found in the [async](https://github.com/caolan/async) library.
+Functions are styled to match the simplicity and ease of use found in the [async](https://github.com/caolan/async)
+ library.
 
 ## Install
 
@@ -27,7 +28,7 @@ Functions are styled to match the simplicity and ease of use found in the [async
     };
 
 ## In the Browser
-Tested in Firefox and Chrome. Usage:
+Tested in recent versions of Internet Explorer, Firefox and Chrome. Usage:
 
     <script type="text/javascript" src="re.js"></script>
     <script type="text/javascript">
@@ -39,7 +40,7 @@ Tested in Firefox and Chrome. Usage:
 
     </script>
 
-Try it in your browser with this test: [test/test.html](http://htmlpreview.github.com/?https://github.com/waylonflinn/re/blob/master/test/test.html) or play with the test in this fiddle: [re-fiddle](http://jsfiddle.net/7C26s/1/embedded/result/)
+Try it in your browser with this test: [test/test.html](http://htmlpreview.github.com/?https://github.com/waylonflinn/re/blob/master/test/test.html) or play with the test in this fiddle: [re-fiddle](http://jsfiddle.net/7C26s/1/embedded/result/) (these pages don't work in IE, because it's recently gone from pushy to pedantic').
 
 ## Usage
 
@@ -117,6 +118,10 @@ The following will give a linear backoff strategy that has the following progres
 Both progressive strategies accept the `max` option.  All strategies also accept a
 `rand` option. This is a `Boolean` that adds a random multiplier between 1 and 2.
 This makes them act like the tradition backoff function. This option is set to `false` by default.
+
+## Stability
+
+Test coverage is good and expanding. We use [mocha](http://visionmedia.github.com/mocha/). 
 
 ## Technical Details
 

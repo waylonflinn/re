@@ -1,13 +1,14 @@
 {
 	"name": "re",
 	"description": "Do it again, after a bit.",
-	"version": "0.1.0-0",
+	"version": "0.1.1-0",
 	"main": "./lib/re",
 	"keywords": ["utility", "retry", "exponential backoff", "linear backoff"],
 	"repository":{ 
 		"type": "git",
 		"url" : "https://github.com/waylonflinn/re.git"
 	},
+	"bugs": "https://trello.com/board/re/50b7a89a42b74706180016d2",
 	"author": "Waylon Flinn <waylonflinn@gmail.com>",
 	"engines":{
 		"node": ">=0.6"
