@@ -19,7 +19,7 @@ Functions are styled to match the simplicity and ease of use found in the [async
 
     var repeatMe = function(retryCount, done){
       if(retryCount < 2) done(new Error("Not there yet!"));
-      else callback(null, retryCount);
+      else done(null, retryCount);
     };
 
     var doMeAtTheEnd = function(err, retryCount){
@@ -34,6 +34,9 @@ Tested in Firefox and Chrome. Usage:
       var re = new Re();
 
       re.try(repeatMe, doMeAtTheEnd);
+      
+      // repeatMe and doMeAtTheEnd are exactly as above
+
     </script>
 
 Try it in your browser with this test: [test/test.html](http://htmlpreview.github.com/?https://github.com/waylonflinn/re/blob/master/test/test.html) or play with the test in this fiddle: [re-fiddle](http://jsfiddle.net/7C26s/1/embedded/result/)
