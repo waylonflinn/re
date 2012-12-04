@@ -72,14 +72,13 @@ The `retryCount` argument is the number of the current retry. It'll be zero the 
 and get bigger every time.
 
 The `done` argument is a function to call when you've completed your operation.
-If you encounter an error condition in your operation, pass in the Error object
+If you encounter an error condition, pass in the `err` object
 as the first argument. If you don't encounter an error, pass in a falsy first
 argument (null works). If you give us a falsy error and no exception happens,
 we call your callback with all the arguments passed into this function.
 
 The second function passed to `re.try` can take as many arguments as you like but
-should always start with an error parameter. This will be called with a falsy first
-parameter, if no error happens.
+should always start with an error parameter. This will be falsy, if no error happens.
 
 The `re.do` function is like `re.try` expect it doesn't wrap your operation in
 a `try...catch`.
