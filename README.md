@@ -40,7 +40,7 @@ Tested in recent versions of Internet Explorer, Firefox and Chrome. Usage:
 
     </script>
 
-Try it in your browser with this test: [test/test.html](http://htmlpreview.github.com/?https://github.com/waylonflinn/re/blob/master/test/test.html) or play with the test in this fiddle: [re-fiddle](http://jsfiddle.net/7C26s/1/embedded/result/) (these pages don't work in IE, because it's recently gone from pushy to pedantic').
+Try it in your browser with this test: [test/test.html](http://htmlpreview.github.com/?https://github.com/waylonflinn/re/blob/master/test/test.html) or play with the test in this fiddle: [re-fiddle](http://jsfiddle.net/7C26s/1/embedded/result/) (these pages don't work in IE, because it's recently gone from lax to pedantic).
 
 ## Usage
 
