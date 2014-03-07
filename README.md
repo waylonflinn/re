@@ -80,7 +80,7 @@ we call your callback with all the arguments passed into this function.
 The second function passed to `re.try` can take as many arguments as you like but
 should always start with an error parameter. This will be falsy, if no error happens.
 
-The `re.do` function is like `re.try` expect it doesn't wrap your operation in
+The `re.do` function is like `re.try` except it doesn't wrap your operation in
 a `try...catch`.
 
 ## Options

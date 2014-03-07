@@ -1,7 +1,7 @@
 {
 	"name": "re",
 	"description": "Do it again, after a bit.",
-	"version": "0.1.1-2",
+	"version": "0.1.1-4",
 	"main": "./lib/re",
 	"keywords": ["utility", "retry", "exponential backoff", "linear backoff"],
 	"repository":{ 
