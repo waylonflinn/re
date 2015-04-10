@@ -1,7 +1,7 @@
 {
 	"name": "re",
 	"description": "Do it again, after a bit.",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"main": "./lib/re",
 	"keywords": ["utility", "retry", "exponential backoff", "linear backoff"],
 	"repository":{ 
@@ -13,4 +13,5 @@
 	"engines":{
 		"node": ">=0.6"
 	}
+	"license": "MIT"
 }
