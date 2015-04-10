@@ -8,7 +8,7 @@
 		"type": "git",
 		"url" : "https://github.com/waylonflinn/re.git"
 	},
-	"bugs": "https://trello.com/board/re/50b7a89a42b74706180016d2",
+	"bugs": "https://github.com/waylonflinn/re/issues",
 	"author": "Waylon Flinn <waylonflinn@gmail.com>",
 	"engines":{
 		"node": ">=0.6"
