@@ -12,6 +12,6 @@
 	"author": "Waylon Flinn <waylonflinn@gmail.com>",
 	"engines":{
 		"node": ">=0.6"
-	}
+	},
 	"license": "MIT"
 }
