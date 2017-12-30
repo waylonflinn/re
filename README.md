@@ -138,7 +138,7 @@ This makes them act like the tradition backoff function. This option is set to `
 
 ## Stability
 
-Test coverage is good and expanding. We use [mocha](http://visionmedia.github.com/mocha/). 
+Test coverage is good and expanding. We use [mocha](http://mochajs.org/). 
 
 ## Technical Details
 
